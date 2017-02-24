@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    #back end
+  namespace :admin do
+    resources :products
+  end
 
-  root 'welcome#index'
+  #front end
+  resources :products
+
+  root 'products#index'
 end
