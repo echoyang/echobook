@@ -4,25 +4,38 @@
 
 <table class="table table-bordered">
     <thead>
-
+        <tr>
+          <th colspan="2">商品资讯</th>
+          <th>作者</th>
+          <th width="300">简介</th>
+          <th>数量</th>
+          <th>价格</th>
+          <th>操作选项</th>
+        </tr>
     </thead>
     <tbody>
       <% @products.each do |p| %>
         <tr>
           <td>
-            <% if p.image.present? %>
-                <%= image_tag p.image.thumb.url, class: "thumbnail" %>
-            <% else %>
-                <%= image_tag "http://placehold.it/200x200&text=No Pic", class: "thumbnail" %>
+            <%= link_to p do %>
+                  <% if p.image.present? %>
+                      <%= image_tag p.image.thumb.url, class: "thumbnail" %>
+                  <% else %>
+                      <%= image_tag "http://placehold.it/200x200&text=No Pic", class: "thumbnail" %>
+                  <% end %>
             <% end %>
           </td>
-          <td><%= p.title %></td>
+          <td><%= link_to p.title, p %></td>
           <td><%= p.author %></td>
           <td><%= p.description %></td>
           <td><%= p.quantity %></td>
           <td><%= p.price %></td>
           <td>
             <%= link_to "edit", edit_admin_product_path(p) %>
+            <%= link_to admin_product_path(p), method: :delete do %>
+                  <i class="fa fa-trash" style="color: red"></i>
+            <% end %>
+
           </td>
         </tr>
       <% end %>

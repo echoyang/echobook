@@ -39,6 +39,14 @@ class Admin::ProductsController < ApplicationController
         end
     end
 
+    def destroy
+        @product = Product.find(params[:id])
+
+        @product.destroy
+
+        flash[:alert] = "已删除 #{@product.title}"
+        redirect_to admin_products_path
+    end
     private
         def product_params
             params.require(:product).permit(:title, :description, :author, :quantity, :price, :image)
