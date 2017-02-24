@@ -8,7 +8,9 @@ Rails.application.routes.draw do
 
   #front end
   resources :products
-
   root 'products#index'
-  
+
+  resources :welcome
+  root 'welcome#index'
+
 end
